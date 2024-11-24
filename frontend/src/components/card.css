@@ -1,0 +1,36 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 600px;
+  width: 100%;
+  text-align: center; /* Center align all text in the card */
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.card-videos {
+  display: flex;
+  justify-content: center; /* Center align the video thumbnails */
+  gap: 1rem; /* Space between videos */
+}
+
+.video-thumbnail {
+  width: 100px; /* Adjust as needed */
+  height: 80px; /* Adjust as needed */
+  border-radius: 4px;
+  cursor: pointer;
+}

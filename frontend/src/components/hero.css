@@ -1,0 +1,38 @@
+.hero {
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 75vh; /* Half of the viewport height */
+  background-color: #f0f4f8; /* Light background color for contrast */
+  text-align: center; /* Center text */
+  margin-bottom: 10vh;
+  
+}
+
+
+.hero-title {
+  font-size: 3rem; /* Large title size */
+  margin: 0.5rem 0; /* Space around the title */
+}
+
+.hero-subtitle {
+  font-size: 1.5rem; /* Subtitle size */
+  margin-bottom: 2rem; /* Space below the subtitle */
+}
+
+.scroll-prompt {
+  display: flex;
+  align-items: center; /* Center arrow and text */
+  animation: blink 1.5s infinite; /* Blinking effect */
+}
+
+.arrow {
+  font-size: 2rem; /* Arrow size */
+  margin-right: 0.5rem; /* Space between arrow and text */
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

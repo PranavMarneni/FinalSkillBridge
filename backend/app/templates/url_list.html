@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Job Posting URLs</title>
+</head>
+<body>
+    <h1>Submitted Job Posting URLs</h1>
+    <ul>
+        {% for url in urls %}
+            <li>{{ url.url }} - {{ url.created_at }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'submit_url' %}">Submit a new URL</a>
+</body>
+</html>

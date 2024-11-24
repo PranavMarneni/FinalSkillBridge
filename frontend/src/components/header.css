@@ -1,0 +1,25 @@
+.header {
+  position: sticky; /* Makes the header stick to the top */
+  top: 0; /* Positions it at the very top of the viewport */
+  z-index: 1000; /* Ensures it stays above other elements */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Left-align the header content */
+  background-color: #f8f9fa; /* Light background color */
+  padding: 1rem;
+  /* Optional: add shadow to distinguish it from content */
+  /* box-shadow: 0px 4px 2px -2px gray; */
+}
+
+.logo {
+  height: 50px; /* Adjust the logo size as needed */
+  margin-right: 1rem; /* Space between logo and heading */
+  padding-left: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}

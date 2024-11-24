@@ -1,0 +1,17 @@
+.video-slider {
+    padding: 2rem;
+}
+
+.video-thumbnail {
+    width: 150px;  /* Adjust the width to make the thumbnail square */
+    height: 150px; /* Same value for height to ensure it's a square */
+    object-fit: cover; /* Ensures the image maintains aspect ratio while covering the square */
+    border-radius: 8px; /* Optional: Rounded corners */
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin: 0 auto; /* Center the image inside the slide */
+}
+
+.video-thumbnail:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
