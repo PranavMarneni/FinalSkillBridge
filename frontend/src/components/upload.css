@@ -1,0 +1,64 @@
+/* General container styling */
+.pdf-uploader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Title styling */
+  .pdf-uploader-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Input file styling */
+  .pdf-uploader-input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  
+  .pdf-uploader-input:hover {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Result container styling */
+  .pdf-uploader-result {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .pdf-uploader-result-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #444;
+  }
+  
+  /* Extracted text styling */
+  .pdf-uploader-result-text {
+    white-space: pre-wrap;
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    color: #555;
+    font-size: 14px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
