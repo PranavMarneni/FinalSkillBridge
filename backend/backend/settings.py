@@ -11,22 +11,34 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Load the .env file
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
+# Access the OpenAI API Key
+OPENAI_API_KEY="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"
+print("OPENAI API Key:", OPENAI_API_KEY)  # This will print the API key to the console
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jdp4u7al#_p$1-$nqi8_u=7x=1kgh#0+_(#81dm+0)$$4-dv&r'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
+
+# Ensure keys are present
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY is missing. Please set SECRET_KEY in your .env file.")
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY is missing. Please set OPENAI_API_KEY in your .env file.")
 
 # Application definition
 
@@ -37,9 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
-    'rest_framework',
-    'corsheaders'
+    'rest_framework', 
+    'corsheaders', 
+    'app',            
 ]
 
 MIDDLEWARE = [
@@ -49,13 +61,15 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'
-REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLAUSES': ['rest_framework.permission.AllowAny']}
-CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 TEMPLATES = [
     {

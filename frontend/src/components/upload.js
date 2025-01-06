@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist/webpack';
-import './upload.css'; // Import CSS file
+import './upload.css';
 
 const PdfUploader = () => {
-  const [text, setText] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState('');
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -29,11 +30,39 @@ const PdfUploader = () => {
           extractedText += pageText + ' ';
         }
 
-        setText(extractedText);
+        // Send extracted text to backend for storing
+        handleSubmitPdf(file.name, extractedText);
       };
       fileReader.readAsArrayBuffer(file);
     } else {
       alert('Please select a valid PDF file.');
+    }
+  };
+
+  const handleSubmitPdf = async (fileName, extractedText) => {
+    setIsProcessing(true);
+    setUploadMessage('Uploading PDF, please wait...');
+
+    try {
+      const storeResponse = await fetch('http://127.0.0.1:8000/api/store-pdf/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pdf_name: fileName, pdf_text: extractedText }),
+      });
+
+      if (!storeResponse.ok) {
+        const errorData = await storeResponse.json();
+        setUploadMessage(`Error: ${errorData.error}`);
+      } else {
+        setUploadMessage('PDF uploaded successfully. You can now continue to submit job links.');
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setUploadMessage('Network error: Could not upload the PDF.');
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -46,10 +75,9 @@ const PdfUploader = () => {
         onChange={handleFileChange}
         className="pdf-uploader-input"
       />
-      {text && (
-        <div className="pdf-uploader-result">
-          <h3 className="pdf-uploader-result-title">Extracted Text:</h3>
-          <pre className="pdf-uploader-result-text">{text}</pre>
+      {uploadMessage && (
+        <div className="pdf-upload-message">
+          <p>{uploadMessage}</p>
         </div>
       )}
     </div>

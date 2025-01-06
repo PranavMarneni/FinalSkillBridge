@@ -10,7 +10,7 @@ const InputForm = () => {
     useEffect(() => {
         const fetchSubmittedUrls = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/urls/');
+                const response = await fetch('http://127.0.0.1:8000/api/url-list/');
                 if (response.ok) {
                     const data = await response.json();
                     setSubmittedUrls(data);  // Update state with URLs from the backend
@@ -27,27 +27,24 @@ const InputForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
         if (jobLink.trim()) {
-            // API call for submitting the job link
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/submit-url/', {
-                    method: 'POST',
+                    method: 'POST',  // Make sure this is POST
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ url: jobLink }),
                 });
-
+    
                 if (response.ok) {
+                    const newUrl = await response.json();
+                    setSubmittedUrls((prevUrls) => [...prevUrls, newUrl]);
                     setAlertMessage(`Link submitted successfully: ${jobLink}`);
-                    
-                    // Update the submitted URLs list on successful submission
-                    setSubmittedUrls((prevUrls) => [...prevUrls, jobLink]);
-
-                    // Clear the input field
                     setJobLink('');
-                } else {
+                }
+                 else {
                     setAlertMessage('There was an error submitting the link.');
                 }
             } catch (error) {
@@ -57,6 +54,7 @@ const InputForm = () => {
             setAlertMessage('Please enter a valid job link.');
         }
     };
+    
 
     const handleDoneSubmitting = async () => {
         // Trigger the backend to process the URLs
