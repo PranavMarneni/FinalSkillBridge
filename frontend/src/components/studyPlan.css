@@ -1,7 +1,66 @@
+/* Container Styling */
 .study-plan-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center align the cards */
-    padding: 2rem; /* Padding around the container */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the content */
+  padding: 2rem; /* Padding around the container */
+  background-color: #f9f9f9; /* Light background for better readability */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+  max-width: 800px; /* Limit the width for better readability */
+  margin: 2rem auto; /* Center the container on the page */
+  font-family: Arial, sans-serif; /* Clean, modern font */
+}
+
+/* Title Styling */
+.study-plan-container h1 {
+  font-size: 2rem; /* Larger font for the title */
+  margin-bottom: 1rem; /* Space below the title */
+  color: #333; /* Dark text color for contrast */
+  text-align: center; /* Center align the title */
+}
+
+/* Subtitle Styling */
+.study-plan-container p {
+  font-size: 1rem; /* Standard font size for text */
+  color: #555; /* Slightly lighter color for subtitle */
+  margin-bottom: 2rem; /* Space below the subtitle */
+  text-align: center; /* Center align the text */
+}
+
+/* Button Styling */
+.final-submit-button {
+  background-color: #007bff; /* Primary blue button */
+  color: #fff; /* White text for contrast */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners for the button */
+  padding: 0.75rem 1.5rem; /* Button padding */
+  font-size: 1rem; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.final-submit-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Study Plan Display Styling */
+.study-plan-display {
+  background-color: #fff; /* White background for the text */
+  padding: 1.5rem; /* Padding for readability */
+  border-radius: 8px; /* Rounded corners for the display box */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  max-width: 100%; /* Ensure it doesn't overflow */
+  margin-top: 2rem; /* Space above the display */
+  overflow-x: auto; /* Horizontal scrolling for long text */
+  white-space: pre-wrap; /* Preserve formatting while wrapping text */
+  color: #333; /* Dark text color */
+  font-family: 'Courier New', Courier, monospace; /* Monospaced font for preformatted text */
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #ff4d4d; /* Red color for error messages */
+  font-size: 1rem; /* Standard font size */
+  margin-bottom: 1rem; /* Space below the message */
+}
