@@ -4,6 +4,7 @@ from ..models import UploadedPDF
 from ..services.openai_service import generate_study_plan
 
 
+
 def process_job_urls(urls):
     job_descriptions = []
     for url in urls:

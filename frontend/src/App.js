@@ -17,7 +17,7 @@ function App() {
       <PdfExtractor/>
       <Form />
       <Plan />
-      <Video videos = {videos}/>
+      {/* <Video videos = {videos}/> */}
       {/*Don't like how all this isn't in its own component*/}
       {/* Rest of your app content */}
     </div>

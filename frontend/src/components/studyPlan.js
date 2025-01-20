@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Card from './card'; // Import the Card component
-import './studyPlan.css'; // Import CSS for the study plan
+import Card from './card'; 
+import './studyPlan.css'; 
 
 export default function StudyPlan() {
-    const [studyPlan, setStudyPlan] = useState([]);  // State to store the study plan
-    const [error, setError] = useState('');  // State to store errors
+    const [studyPlan, setStudyPlan] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchStudyPlan = async () => {

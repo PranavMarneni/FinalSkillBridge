@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, WebDriverException, NoSuchElementException
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -29,7 +28,7 @@ def validate_job_url(url):
 def get_selenium_page(url):
     """Fetch page source from the given URL using Selenium."""
     options = Options()
-    options.add_argument("--headless")  # Run in headless mode
+    # options.add_argument("--headless")  # Run in headless mode
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-dev-shm-usage")
@@ -38,7 +37,8 @@ def get_selenium_page(url):
     options.add_argument("--remote-debugging-port=9222")
 
     try:
-        service = Service(ChromeDriverManager().install())
+        # Use your local chromedriver path
+        service = Service("/Users/pranavmarneni/Documents/GitHub/FinalSkillBridge/chromedriver-mac-arm64/chromedriver")
         driver = webdriver.Chrome(service=service, options=options)
         logging.info(f"Opening URL: {url}")
         

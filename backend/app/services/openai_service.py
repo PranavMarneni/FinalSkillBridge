@@ -18,8 +18,7 @@ def generate_study_plan(resume_text, skills):
                 {
                     "role": "system",
                     "content": "Analyze the user's resume and match it with the provided skills list. "
-                               "Create a personalized study plan with 3 key topics, their descriptions, "
-                               "and 3 video links for each topic."
+                               "Create a personalized study plan with 3-5 key topics, their descriptions,and where to study them "
                 },
                 {
                     "role": "user",

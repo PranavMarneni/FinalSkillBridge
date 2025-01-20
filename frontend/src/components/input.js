@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './input.css';
 
 const InputForm = () => {
-    const [jobLink, setJobLink] = useState('');  // State to store the current job link
-    const [submittedUrls, setSubmittedUrls] = useState([]);  // State to track submitted URLs
-    const [alertMessage, setAlertMessage] = useState('');  // State to show messages
+    const [jobLink, setJobLink] = useState('');
+    const [submittedUrls, setSubmittedUrls] = useState([]);
+    const [alertMessage, setAlertMessage] = useState('');
 
-    // Fetch submitted URLs from the backend when the component loads
     useEffect(() => {
         const fetchSubmittedUrls = async () => {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/url-list/');
                 if (response.ok) {
                     const data = await response.json();
-                    setSubmittedUrls(data);  // Update state with URLs from the backend
+                    setSubmittedUrls(data);
                 } else {
                     setAlertMessage('Error fetching submitted URLs.');
                 }
@@ -22,29 +21,28 @@ const InputForm = () => {
             }
         };
 
-        fetchSubmittedUrls();  // Fetch the URLs on component load
+        fetchSubmittedUrls();
     }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+
         if (jobLink.trim()) {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/submit-url/', {
-                    method: 'POST',  // Make sure this is POST
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ url: jobLink }),
                 });
-    
+
                 if (response.ok) {
                     const newUrl = await response.json();
                     setSubmittedUrls((prevUrls) => [...prevUrls, newUrl]);
                     setAlertMessage(`Link submitted successfully: ${jobLink}`);
                     setJobLink('');
-                }
-                 else {
+                } else {
                     setAlertMessage('There was an error submitting the link.');
                 }
             } catch (error) {
@@ -54,10 +52,8 @@ const InputForm = () => {
             setAlertMessage('Please enter a valid job link.');
         }
     };
-    
 
     const handleDoneSubmitting = async () => {
-        // Trigger the backend to process the URLs
         try {
             const response = await fetch('http://127.0.0.1:8000/api/process-urls/', {
                 method: 'POST',
@@ -68,7 +64,7 @@ const InputForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setAlertMessage('Processing URLs... Check the result: ' + JSON.stringify(data));
+                setAlertMessage('Processing completed. View the study plan on the Study Plan page.');
             } else {
                 setAlertMessage('Error occurred during processing.');
             }
@@ -80,7 +76,7 @@ const InputForm = () => {
     return (
         <div className="input-form">
             <h2 className="input-title">Add Your Job Links</h2>
-            <p className="input-subtitle">Please place the links in the form underneath:</p>
+            <p className="input-subtitle">Please place the links in the form below:</p>
             <form onSubmit={handleSubmit}>
                 <input
                     type="url"
@@ -91,25 +87,17 @@ const InputForm = () => {
                     required
                 />
                 <p className="alert-message">{alertMessage}</p>
-                
+
                 <div className="button-container">
                     <button type="submit" className="submit-button">Keep Submitting More</button>
-                    <button
-                        type="button"
-                        className="done-button"
-                        onClick={handleDoneSubmitting}
-                    >
-                        Done Submitting
-                    </button>
                 </div>
             </form>
 
-            {/* Display the list of submitted URLs */}
             <div className="submitted-urls">
                 <h3>Submitted URLs:</h3>
                 <ul>
                     {submittedUrls.map((url, index) => (
-                        <li key={index}>{url.url}</li>  // Assuming each URL object has a 'url' field
+                        <li key={index}>{url.url}</li>
                     ))}
                 </ul>
             </div>
