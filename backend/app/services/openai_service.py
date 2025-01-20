@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-openai.api_key = "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"
-
 
 def generate_study_plan(resume_text, skills):
     """
