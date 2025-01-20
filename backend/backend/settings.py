@@ -19,8 +19,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Access the OpenAI API Key
-OPENAI_API_KEY="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"
-print("OPENAI API Key:", OPENAI_API_KEY)  # This will print the API key to the console
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
